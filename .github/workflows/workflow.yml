@@ -26,8 +26,15 @@ jobs:
   update-branch:
     runs-on: ubuntu-latest
     needs: test
-    if: success() && github.ref == 'refs/heads/main'
+    if: success() && github.ref == 'refs/heads/dev'
 
     steps:
-    - name: Update main branch
-      run: git push origin main
+    - name: Checkout de code
+      uses: actions/checkout@v2
+      with:
+        ref: main  # Spécifie la branche principale
+
+    - name: Fusionner les modifications de dev vers main
+      run: |
+        git merge origin/dev
+        git push origin main
