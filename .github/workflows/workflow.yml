@@ -39,5 +39,8 @@ jobs:
         git config --global user.email "thierry.pethe@outlook.fr"
         git config --global user.name "Razacc"
         git fetch --all
+        git checkout dev
+        git pull
         git checkout main
+        git pull
         git merge --allow-unrelated-histories dev
