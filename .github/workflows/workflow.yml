@@ -32,7 +32,7 @@ jobs:
     - name: Checkout de code
       uses: actions/checkout@v2
       with:
-        ref: main  # Spécifie la branche principale
+        ref: dev  # Spécifie la branche principale
   
     - name: Fusionner les modifications de dev vers main
       run: |
