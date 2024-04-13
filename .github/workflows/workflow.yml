@@ -30,7 +30,8 @@ jobs:
         run: echo Hello, world!
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
+      - name: Exécutez les tests
+        run: python -m unittest discover -v
           echo Add other actions to build,
           echo test, and deploy your project.
+          
