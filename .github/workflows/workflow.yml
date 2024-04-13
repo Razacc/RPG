@@ -22,3 +22,12 @@ jobs:
 
     - name: Exécuter les tests
       run: python -m unittest discover -v
+
+  update-branch:
+    runs-on: ubuntu-latest
+    needs: test
+    if: success() && github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Update main branch
+      run: git push origin main
