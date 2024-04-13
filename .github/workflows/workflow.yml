@@ -36,6 +36,7 @@ jobs:
   
     - name: Fusionner les modifications de dev vers main
       run: |
+        git fetch --all
         git branch
         git checkout main
         git pull origin main
