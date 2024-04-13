@@ -36,6 +36,9 @@ jobs:
   
     - name: Fusionner les modifications de dev vers main
       run: |
+        git fetch dev
+        git checkout dev
+        git pull
         git checkout main
         git pull origin main
         git merge --ff-only origin/dev
