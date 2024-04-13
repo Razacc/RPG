@@ -1,4 +1,3 @@
-
 name: CI
 
 on:
@@ -23,3 +22,19 @@ jobs:
 
     - name: Exécuter les tests
       run: python -m unittest discover -v
+
+  update-branch:
+    runs-on: ubuntu-latest
+    needs: test
+    if: success() && github.ref == 'refs/heads/dev'
+
+    steps:
+    - name: Checkout de code
+      uses: actions/checkout@v2
+      with:
+        ref: main  # Spécifie la branche principale
+
+    - name: Fusionner les modifications de dev vers main
+      run: |
+        git merge dev
+        git push
