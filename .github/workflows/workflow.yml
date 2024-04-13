@@ -23,8 +23,9 @@ jobs:
     - name: Exécuter les tests
       run: |
         if ! python -m unittest discover -v; then
-          git checkout HEAD^  # Move to the previous commit
-          git branch -D dev  # Delete the current dev branch
-          git checkout -b dev  # Create a new dev branch from the previous commit
+          git checkout -b failures/$(date +%s) HEAD~  # Create a new branch with a unique name and move to the commit before HEAD
+          git push origin HEAD -u  # Push the new branch to remote
+          git checkout dev  # Switch back to dev branch
+          git reset --hard HEAD~  # Reset dev branch to the commit before HEAD
           git push origin dev -f  # Force push the new dev branch to remote
         fi
