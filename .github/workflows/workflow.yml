@@ -36,7 +36,5 @@ jobs:
 
     - name: Fusionner les modifications de dev vers main
       run: |
-        git checkout main
-        git branch
         git merge dev
         git push
