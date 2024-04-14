@@ -34,8 +34,12 @@ jobs:
       with:
         ref: main  # Spécifie la branche à mettre à jour
 
-    - name: Merge de main avec dev
-      run:  |
+    - name: Récupérer la référence de dev
+      run: git fetch origin dev:dev
+      working-directory: ${{ github.workspace }}
+
+    - name: Réinitialiser main pour pointer sur la même référence que dev
+      run: |
         git checkout main
         git reset --hard dev
       working-directory: ${{ github.workspace }}
