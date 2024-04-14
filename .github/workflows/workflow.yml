@@ -21,4 +21,4 @@ jobs:
         python-version: 3.8  # Version de Python à utiliser
 
     - name: Exécuter les tests
-      run: python -m unittest
+      run: python -m unittest discover -v
