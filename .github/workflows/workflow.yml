@@ -24,7 +24,7 @@ jobs:
       run: |
         if ! python -m unittest discover -v; then
           git clean -xdf  # Clean untracked files
-          git add .  # Add all modifications to the staging area
+          git add -A  # Add all modifications to the staging area
           git checkout -b failures/$(date +%s)  # Create a new branch with a unique name from HEAD
           git config --global user.email "thierry.pethe@outlook.fr"
           git config --global user.name "Razacc"
