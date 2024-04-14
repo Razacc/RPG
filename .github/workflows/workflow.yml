@@ -35,7 +35,7 @@ jobs:
         ref: main  # Spécifie la branche à mettre à jour
 
     - name: Merge de main avec dev
-      run:  git merge --ff dev -m "Merge dev into main"
+      run:  git merge --ff-only dev-m "Merge dev into main"
             git checkout main
             git reset --hard dev
       working-directory: ${{ github.workspace }}
