@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - dev  # Exécute le workflow sur la branche principale
+      - dev  # Exécute le workflow sur la branche dev
 
 jobs:
   test:
@@ -22,3 +22,20 @@ jobs:
 
     - name: Exécuter les tests
       run: python -m unittest discover -v
+
+  merge_main:
+    needs: test  # Attend que le job de test réussisse
+    runs-on: ubuntu-latest
+    if: success()  # Exécute cette étape uniquement en cas de succès du job précédent
+
+    steps:
+    - name: Checkout du code
+      uses: actions/checkout@v2
+      with:
+        ref: main  # Spécifie la branche à mettre à jour
+
+    - name: Fast-forward merge de main avec dev
+      run: git merge --ff-only dev
+      working-directory: ${{ github.workspace }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
