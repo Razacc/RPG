@@ -13,7 +13,7 @@ class TestPersonnage(unittest.TestCase):
         
     def test_reduire_points_de_vie(self):
         joueur = Personnage("Joueur 1", "Guerrier")
-        joueur.reduire_points_de_vie(-3)
+        joueur.reduire_points_de_vie(3)
         self.assertEqual(joueur.points_de_vie, 7)
 
 
