@@ -21,16 +21,4 @@ jobs:
         python-version: 3.8  # Version de Python à utiliser
 
     - name: Exécuter les tests
-      run: |
-        if ! python -m unittest discover -v; then
-          git clean -xdf  # Clean untracked files
-          git add -A  # Add all modifications to the staging area
-          git checkout -b failures/$(date +%s)  # Create a new branch with a unique name from HEAD
-          git config --global user.email "thierry.pethe@outlook.fr"
-          git config --global user.name "Razacc"
-          git commit -am "Tests failed"  # Commit the changes
-          git push origin failures/$(date +%s)  # Push the new branch to remote
-          git checkout dev  # Switch back to dev branch
-          git reset --hard HEAD^  # Reset dev branch to the commit before HEAD
-          git push origin dev -f  # Force push the new dev branch to remote
-        fi
+      run: python -m unittest
