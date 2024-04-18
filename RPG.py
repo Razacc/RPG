@@ -6,15 +6,24 @@ class Personnage:
         self.points_de_vie = 10
         self.points_d_attaque = 5
         self.points_de_defense = 5
+      
+    def changer_classe(self, nouvelle_classe):
+        if nouvelle_classe in ["Guerrier", "Mage", "Archer"]:
+            self.classe = nouvelle_classe
+        else:
+            print("Classe invalide.")
 
     def increment_niveau(self):
         self.niveau += 1
-        self.points_d_attaque += 2
-        self.points_de_defense += 2
 
     def reduire_points_de_vie(self, points):
         self.points_de_vie -= points
-      
-# Création des personnages
-joueur1 = Personnage("Joueur 1", "Guerrier")
-joueur2 = Personnage("Joueur 2", "Mage")
+        if self.points_de_vie <= 0:
+            print("Le personnage est mort.")
+            self.points_de_vie = 0
+
+    def augmenter_points_d_attaque(self, points):
+        self.points_d_attaque += points
+
+    def augmenter_points_de_defense(self, points):
+        self.points_de_defense += points
